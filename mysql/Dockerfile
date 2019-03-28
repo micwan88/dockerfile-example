@@ -19,23 +19,19 @@ RUN	mkdir -p ${MYSQLDIR}/data \
 	&& chown -R mysql:mysql ${MYSQLDIR} \
 	&& export RANDOMPW=`sed -n 's/.*temporary password is generated for root@localhost\: \(.*\)/\1/p' /var/log/mysql/error.log` \
 	&& echo "Generated password: ${RANDOMPW}" \
+	&& export DEBIANPW=`sed -n 's/^password\s\=\s\(.*\)/\1/p' /etc/mysql/debian.cnf` \
+	&& echo "Debian sys maint password: ${DEBIANPW}" \
 	&& service mysql start \
 	&& echo "SET PASSWORD FOR 'root'@'localhost' = '${ROOTPASSWD}';" >> temp.sql \
 	&& echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '${ROOTPASSWD}' with grant option;" >> temp.sql \
-	&& echo "GRANT SHUTDOWN ON *.* TO 'debian-sys-maint'@'localhost' IDENTIFIED BY '${RANDOMPW}';" >> temp.sql \
-	&& cat temp.sql \
+	&& echo "GRANT SHUTDOWN ON *.* TO 'debian-sys-maint'@'localhost' IDENTIFIED BY '${DEBIANPW}';" >> temp.sql \
 	&& mysql --connect-expired-password -u root -p${RANDOMPW} < temp.sql \
 	&& rm -rf temp.sql \
 	&& unset RANDOMPW \
+	&& unset DEBIANPW \
 	&& mysqladmin -u root shutdown -p${ROOTPASSWD} \
 	&& rm -rf /var/log/mysql/error.log
 
 VOLUME ${MYSQLDIR}
-
-	# && service mysql start \
-	# && mysqladmin -u root password '${ROOTPASSWD}' -p${RANDOMPW} \
-	# && unset RANDOMPW
-	# && service mysql stop \
-	# && rm -rf /var/log/mysql/error.log
 
 EXPOSE 3306
