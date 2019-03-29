@@ -7,7 +7,8 @@ TAGNAME=micwan/mysql
 ROOTPASSWD=$1
 
 if [ -z ${ROOTPASSWD} ]; then
-	echo "Does not have mysql ROOT PASSWORD !!"
+	echo "Please provide ROOT PASSWORD for mysql !!"
+	echo "Usage: $0 ROOT_PASSWORD"
 	exit 1
 fi
 
