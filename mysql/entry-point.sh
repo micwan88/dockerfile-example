@@ -2,10 +2,9 @@
 
 # set -v
 
-MYSQLLOG=/var/log/mysql/error.log
+MYSQL_LOGPATH=/var/log/mysql/error.log
 
 echo "Start mysql service ..."
-
 service mysql start
 
 RET=$?
@@ -15,7 +14,7 @@ if [ ${RET} -ne 0 ]; then
 	exit 1
 fi
 
-tail -n 500 -f ${MYSQLLOG}
+tail -n 500 -f ${MYSQL_LOGPATH}
 
 echo "Stop mysql service ..."
 service mysql stop
