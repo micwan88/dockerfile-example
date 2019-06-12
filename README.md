@@ -29,3 +29,9 @@ The MySQL dockerfile aims to mount the database externally and so we can use bel
 #Please replace `<ROOT_PASSWORD>` with actual MySQL root password you want.
 docker run -it -v /external/dir:/mysqlbase/data -p 3306:3306 micwan/mysql /mysqlbase/init-db-files.sh <ROOT_PASSWORD>
 ```
+
+- MySQL (Launch MySQL client `mysql`)
+
+``` bash
+docker exec -it <CONTAINER_ID or CONTAINER_NAME> mysql -p
+```
