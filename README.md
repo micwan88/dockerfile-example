@@ -12,9 +12,7 @@ Below are list of Dockerfile in the repositry
 
 ## Docker Image Features
 
-- For MySQL
-
-### Initial MySQL database in external directory
+- For MySQL (Initialize MySQL database in external directory)
 
 The MySQL dockerfile aims to mount the database externally and so we can use below command to initial the MySQL database with docker command.
 
