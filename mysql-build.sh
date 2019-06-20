@@ -14,7 +14,7 @@ fi
 
 cd ${WORKDIR}
 
-echo "Start build mysql docker image ..."
+echo "Start build ${TAGNAME} docker image ..."
 
 docker build -t ${TAGNAME} --build-arg ROOTPASSWD=${ROOTPASSWD} .
 

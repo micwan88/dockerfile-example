@@ -2,8 +2,8 @@
 
 # set -v
 
-WORKDIR=jupyter
-TAGNAME=micwan/jupyter
+WORKDIR=ubuntu
+TAGNAME=micwan/ubuntu
 
 cd ${WORKDIR}
 
