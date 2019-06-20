@@ -12,6 +12,12 @@ Below are list of Dockerfile in the repositry
 
 ## Build Docker Image
 
+- For Ubuntu
+
+``` bash
+./ubuntu-build.sh
+```
+
 - For MySQL
 
 ``` bash
