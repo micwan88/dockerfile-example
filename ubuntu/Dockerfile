@@ -13,4 +13,4 @@ RUN apt-get update && apt-get install -y net-tools openjdk-8-jdk \
 VOLUME ${EXTDIR}
 
 # set docker image entry point
-CMD ["/bin/bash]
+CMD ["/bin/bash"]
